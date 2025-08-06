@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Logo -->
+    <!-- Header -->
     <header>
         <img src="APS2 logo.jpg" alt="APS2 Logo" class="logo">
         <button id="loginBtn">Login</button>
@@ -30,55 +30,9 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Select Login Type</h2>
-            <button onclick="showLoginForm('admin')">Admin Login</button>
-            <button onclick="showLoginForm('member')">Member Login</button>
-
-            <!-- Admin Login Form -->
-            <div id="adminLoginForm" class="login-form hidden">
-                <h3>Admin Login</h3>
-                <input type="text" id="adminUsername" placeholder="Username">
-                <input type="password" id="adminPassword" placeholder="Password">
-                <button onclick="adminLogin()">Login</button>
-            </div>
-
-            <!-- Member Login Form -->
-            <div id="memberLoginForm" class="login-form hidden">
-                <h3>Member Login</h3>
-                <input type="text" id="memberUsername" placeholder="Member ID">
-                <input type="password" id="memberPassword" placeholder="Password">
-                <button onclick="memberLogin()">Login</button>
-            </div>
+            <button onclick="window.location.href='admin.html'">Admin Login</button>
+            <button onclick="window.location.href='member.html'">Member Login</button>
         </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="hidden">
-        <h2>Admin Dashboard</h2>
-        <div class="form-container">
-            <input type="text" id="memberName" placeholder="Member Name">
-            <input type="text" id="memberPhone" placeholder="Phone Number">
-            <input type="password" id="memberPass" placeholder="Password">
-            <button onclick="addMember()">Add Member</button>
-        </div>
-        <h3>Members List</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>ID</th>
-                    <th>Password</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="memberTable"></tbody>
-        </table>
-    </div>
-
-    <!-- Member Panel -->
-    <div id="memberPanel" class="hidden">
-        <h2>Welcome, <span id="memberNameDisplay"></span></h2>
-        <p>You are logged in as a member of ATAL Lab.</p>
     </div>
 
     <script src="script.js"></script>
