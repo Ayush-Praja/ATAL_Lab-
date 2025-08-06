@@ -1,52 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ATAL Lab - APS2 Jabalpur</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<title>ATAL Lab - APS2 Jabalpur</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo"/>
-    <div class="dropdown">
-      <button class="dropbtn">Login ▾</button>
-      <div class="dropdown-content">
-        <a href="#" onclick="showLogin('admin')">Admin Login</a>
-        <a href="#" onclick="showLogin('member')">Member Login</a>
-      </div>
-    </div>
-  </header>
+<header>
+  <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo">
+  <h1>ATAL Tinkering Lab - APS2 Jabalpur</h1>
+  <button class="login-btn" onclick="showLoginOptions()">Login</button>
+</header>
 
-  <main>
-    <section class="info">
-      <h1>Welcome to ATAL Tinkering Lab - APS2 Jabalpur</h1>
-      <p>
-        The ATAL Tinkering Lab at Army Public School No. 2, Jabalpur is a 
-        state-of-the-art facility that encourages innovation, creativity, 
-        and hands-on learning. Students get access to tools and equipment 
-        to explore STEM concepts, work on projects, and develop real-world 
-        problem-solving skills.
-      </p>
-      <p>
-        Our mission is to foster curiosity, creativity, and imagination in 
-        young minds and to inculcate skills such as design mindset, 
-        computational thinking, adaptive learning, and physical computing.
-      </p>
-    </section>
-  </main>
+<main>
+  <section class="info">
+    <h2>Welcome to ATAL Tinkering Lab</h2>
+    <p>ATAL Tinkering Lab is a dedicated innovation workspace for young minds to develop creativity, problem-solving, and technological skills.</p>
+    <p>Here, students can work on robotics, IoT, electronics, 3D printing, AI, and many other advanced technologies.</p>
+  </section>
+</main>
 
-  <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeLogin()">&times;</span>
-      <h2 id="loginTitle">Login</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="login()">Login</button>
-    </div>
+<!-- Login Options -->
+<div id="loginOptions" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLoginOptions()">&times;</span>
+    <h2>Select Login Type</h2>
+    <button onclick="showLogin('admin')">Admin Login</button>
+    <button onclick="showLogin('member')">Member Login</button>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLogin()">&times;</span>
+    <h2 id="loginTitle"></h2>
+    <input type="text" id="username" placeholder="User ID">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
