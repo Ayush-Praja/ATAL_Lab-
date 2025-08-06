@@ -2,45 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ATAL Lab - APS2 Jabalpur</title>
+<title>Admin Dashboard - ATAL Lab</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
   <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo">
-  <h1>ATAL Tinkering Lab - APS2 Jabalpur</h1>
-  <button class="login-btn" onclick="showLoginOptions()">Login</button>
+  <h1>Admin Dashboard</h1>
 </header>
 
 <main>
-  <section class="info">
-    <h2>Welcome to ATAL Tinkering Lab</h2>
-    <p>ATAL Tinkering Lab is a dedicated innovation workspace for young minds to develop creativity, problem-solving, and technological skills.</p>
-    <p>Here, students can work on robotics, IoT, electronics, 3D printing, AI, and many other advanced technologies.</p>
-  </section>
+  <h2>Add New Member</h2>
+  <input type="text" id="memberName" placeholder="Member Name">
+  <input type="password" id="memberPassword" placeholder="Password">
+  <button onclick="addMember()">Add Member</button>
+
+  <h2>Members List</h2>
+  <table id="membersTable" border="1">
+    <tr>
+      <th>Member Name</th>
+      <th>Member ID</th>
+    </tr>
+  </table>
 </main>
 
-<!-- Login Options -->
-<div id="loginOptions" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLoginOptions()">&times;</span>
-    <h2>Select Login Type</h2>
-    <button onclick="showLogin('admin')">Admin Login</button>
-    <button onclick="showLogin('member')">Member Login</button>
-  </div>
-</div>
-
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLogin()">&times;</span>
-    <h2 id="loginTitle"></h2>
-    <input type="text" id="username" placeholder="User ID">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
 <script src="script.js"></script>
+<script>
+  window.onload = function() {
+    displayMembers();
+  }
+</script>
 </body>
 </html>
