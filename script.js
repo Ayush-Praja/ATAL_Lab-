@@ -38,6 +38,7 @@ function displayMembers() {
             <td>${m.id}</td>
             <td>${m.pass}</td>
             <td>${m.phone}</td>
+            <td><button onclick="deleteMember(${index})">Delete</button></td>
         </tr>`;
         table.innerHTML += row;
     });
@@ -70,5 +71,6 @@ function deleteMember(index) {
         renderTable();
     }
 }
+
 
 
