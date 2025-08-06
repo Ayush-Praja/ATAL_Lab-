@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ATAL Lab - APS2 Jabalpur</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATAL Lab</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header>
-  <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo">
-  <h1>ATAL Tinkering Lab - APS2 Jabalpur</h1>
-  <button class="login-btn" onclick="showLoginOptions()">Login</button>
-</header>
+<body class="home-bg">
 
-<main>
-  <section class="info">
-    <h2>Welcome to ATAL Tinkering Lab</h2>
-    <p>ATAL Tinkering Lab is a dedicated innovation workspace for young minds to develop creativity, problem-solving, and technological skills.</p>
-    <p>Here, students can work on robotics, IoT, electronics, 3D printing, AI, and many other advanced technologies.</p>
-  </section>
-</main>
+  <header>
+    <img src="APS2 logo.jpg" alt="APS2 Logo" class="logo">
+    <button class="login-btn" onclick="toggleLoginMenu()">Login ▾</button>
+    <div id="login-menu" class="login-menu">
+      <button onclick="showLogin('admin')">Admin Login</button>
+      <button onclick="showLogin('member')">Member Login</button>
+    </div>
+  </header>
 
-<!-- Login Options -->
-<div id="loginOptions" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLoginOptions()">&times;</span>
-    <h2>Select Login Type</h2>
-    <button onclick="showLogin('admin')">Admin Login</button>
-    <button onclick="showLogin('member')">Member Login</button>
+  <main class="info-box">
+    <h1>Welcome to ATAL Lab</h1>
+    <p>ATAL Tinkering Lab is an initiative to foster curiosity, creativity and imagination in young minds...</p>
+  </main>
+
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2 id="login-title">Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
   </div>
-</div>
 
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLogin()">&times;</span>
-    <h2 id="loginTitle"></h2>
-    <input type="text" id="username" placeholder="User ID">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
