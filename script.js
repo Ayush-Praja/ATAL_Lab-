@@ -76,7 +76,7 @@ function displayMembers() {
   const table = document.getElementById('membersTable');
   if (!table) return;
 
-  // Reset table header
+  // Reset header each time
   table.innerHTML = `
     <tr>
       <th>Member Name</th>
@@ -86,15 +86,13 @@ function displayMembers() {
     </tr>
   `;
 
-  // Add each member as a row
   members.forEach(m => {
     const row = table.insertRow();
-    row.insertCell(0).innerText = m.name;
-    row.insertCell(1).innerText = m.id;
-    row.insertCell(2).innerText = m.phone;
-    row.insertCell(3).innerText = m.password;
+    row.insertCell(0).innerText = m.name || "—";
+    row.insertCell(1).innerText = m.id || "—";
+    row.insertCell(2).innerText = m.phone || "—";
+    row.insertCell(3).innerText = m.password || "—";
   });
 }
 
-// Call displayMembers() on page load
 window.onload = displayMembers;
