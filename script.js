@@ -8,6 +8,33 @@ document.getElementById("loginBtn")?.addEventListener("click", () => {
 document.querySelector(".close")?.addEventListener("click", () => {
     document.getElementById("loginModal").style.display = "none";
 });
+function adminLogin() {
+    let user = prompt("Enter Admin Username:");
+    let pass = prompt("Enter Admin Password:");
+
+    // Default admin credentials
+    if (user === "admin" && pass === "1234") {
+        window.location.href = "admin.html";
+    } else {
+        alert("Invalid admin credentials!");
+    }
+}
+
+function memberLogin() {
+    let id = prompt("Enter Member ID:");
+    let pass = prompt("Enter Password:");
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+    let member = members.find(m => m.id === id && m.pass === pass);
+
+    if (member) {
+        localStorage.setItem("loggedMember", JSON.stringify(member));
+        window.location.href = "member.html";
+    } else {
+        alert("Invalid Member ID or Password!");
+    }
+}
+
 
 // Add Member (Admin Page)
 function addMember() {
@@ -71,18 +98,3 @@ function deleteMember(index) {
         renderTable();
     }
 }
-function adminLogin() {
-    let user = prompt("Enter Admin Username:");
-    let pass = prompt("Enter Admin Password:");
-
-    // Default admin login credentials
-    if (user === "admin" && pass === "1234") {
-        window.location.href = "admin.html";
-    } else {
-        alert("Invalid admin credentials!");
-    }
-}
-
-
-
-
