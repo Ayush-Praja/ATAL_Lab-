@@ -71,6 +71,18 @@ function deleteMember(index) {
         renderTable();
     }
 }
+function adminLogin() {
+    let user = prompt("Enter Admin Username:");
+    let pass = prompt("Enter Admin Password:");
+
+    // Default admin login credentials
+    if (user === "admin" && pass === "1234") {
+        window.location.href = "admin.html";
+    } else {
+        alert("Invalid admin credentials!");
+    }
+}
+
 
 
 
