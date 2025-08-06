@@ -1,42 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Admin Dashboard - ATAL Lab</title>
-<link rel="stylesheet" href="style.css">
+  <title>ATAL Lab Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      margin: 0;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    /* Action menu styling */
+    .action-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .action-menu button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .action-dropdown {
+      display: none;
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      min-width: 120px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+      z-index: 10;
+      right: 0;
+    }
+
+    .action-dropdown button {
+      background: none;
+      border: none;
+      width: 100%;
+      padding: 8px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .action-dropdown button:hover {
+      background: #eee;
+    }
+
+    .action-menu.show .action-dropdown {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button.add-btn {
+      background: #27ae60;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button.add-btn:hover {
+      background: #219150;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo">
-  <h1>Admin Dashboard</h1>
-</header>
 
-<main>
+<h1>ATAL Lab Admin Panel</h1>
+
+<div class="container">
   <h2>Add New Member</h2>
-  <input type="text" id="memberName" placeholder="Member Name">
-  <input type="password" id="memberPassword" placeholder="Password">
-  <input type="tel" id="memberPhone" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10">
-  <button onclick="addMember()">Add Member</button>
+  <div class="form-group">
+    <label>Member Name:</label>
+    <input type="text" id="memberName">
+  </div>
+  <div class="form-group">
+    <label>Phone Number:</label>
+    <input type="text" id="memberPhone">
+  </div>
+  <div class="form-group">
+    <label>Password:</label>
+    <input type="password" id="memberPassword">
+  </div>
+  <button class="add-btn" onclick="addMember()">Add Member</button>
 
- <h2>Member List</h2>
-<table id="membersTable" border="1" style="width:100%; text-align:center;">
-  <tr>
-    <th>Member Name</th>
-    <th>Member ID</th>
-    <th>Phone Number</th>
-    <th>Password</th>
-  </tr>
-</table>
-</main>
+  <h2>Member List</h2>
+  <table id="membersTable">
+    <tr>
+      <th>Member Name</th>
+      <th>Member ID</th>
+      <th>Phone Number</th>
+      <th>Password</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+</div>
 
 <script src="script.js"></script>
-<script>
-  window.onload = function() {
-    displayMembers();
-  }
-</script>
 </body>
 </html>
-
-
-
