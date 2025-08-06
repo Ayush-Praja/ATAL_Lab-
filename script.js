@@ -44,9 +44,15 @@ function login() {
 function addMember() {
   const name = document.getElementById('memberName').value.trim();
   const password = document.getElementById('memberPassword').value.trim();
+  const phone = document.getElementById('memberPhone').value.trim();
 
-  if (!name || !password) {
+  if (!name || !password || !phone) {
     alert('Please fill all fields!');
+    return;
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    alert('Please enter a valid 10-digit phone number!');
     return;
   }
 
@@ -56,6 +62,17 @@ function addMember() {
   while (members.some(m => m.id === memberID)) {
     memberID = "MEM" + String(members.length + 1 + Math.floor(Math.random() * 100)).padStart(3, '0');
   }
+
+  members.push({ id: memberID, name, password, phone });
+  localStorage.setItem('members', JSON.stringify(members));
+
+  alert(`Member "${name}" added!\nUser ID: ${memberID}\nPassword: ${password}\nPhone: ${phone}`);
+  displayMembers();
+
+  document.getElementById('memberName').value = '';
+  document.getElementById('memberPassword').value = '';
+  document.getElementById('memberPhone').value = '';
+}
 
   members.push({ id: memberID, name, password });
   localStorage.setItem('members', JSON.stringify(members));
@@ -76,6 +93,8 @@ function displayMembers() {
     <tr>
       <th>Member Name</th>
       <th>Member ID</th>
+      <th>Phone Number</th>
+      <th>Password</th>
     </tr>
   `;
 
@@ -83,5 +102,7 @@ function displayMembers() {
     const row = table.insertRow();
     row.insertCell(0).innerText = m.name;
     row.insertCell(1).innerText = m.id;
+    row.insertCell(2).innerText = m.phone;
+    row.insertCell(3).innerText = m.password;
   });
 }
