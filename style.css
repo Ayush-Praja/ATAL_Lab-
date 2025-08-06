@@ -76,3 +76,10 @@ th, td {
     text-align: left;
     border-bottom: 1px solid white;
 }
+body {
+    background: url('Bgimg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+
