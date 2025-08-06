@@ -1,105 +1,90 @@
-function displayMembers() {
-  const members = JSON.parse(localStorage.getItem('members')) || [];
-  const table = document.getElementById('membersTable');
-  if (!table) return;
+let members = JSON.parse(localStorage.getItem("members")) || [];
 
-  table.innerHTML = `
-    <tr>
-      <th>Member Name</th>
-      <th>Member ID</th>
-      <th>Phone Number</th>
-      <th>Password</th>
-      <th>Actions</th>
-    </tr>
-  `;
+document.getElementById("loginBtn").onclick = function() {
+    document.getElementById("loginModal").style.display = "block";
+};
 
-  members.forEach((m, index) => {
-    const row = table.insertRow();
-    row.insertCell(0).innerText = m.name || "—";
-    row.insertCell(1).innerText = m.id || "—";
-    row.insertCell(2).innerText = m.phone || "—";
-    row.insertCell(3).innerText = m.password || "—";
+document.querySelector(".close").onclick = function() {
+    document.getElementById("loginModal").style.display = "none";
+};
 
-    // Actions cell
-    const actionCell = row.insertCell(4);
-    actionCell.innerHTML = `
-      <div class="action-menu">
-        <button onclick="toggleMenu(this)">⋮</button>
-        <div class="action-dropdown">
-          <button onclick="editMember(${index})">Edit</button>
-          <button onclick="deleteMember(${index})">Delete</button>
-        </div>
-      </div>
-    `;
-  });
+function showLoginForm(type) {
+    document.getElementById("adminLoginForm").classList.add("hidden");
+    document.getElementById("memberLoginForm").classList.add("hidden");
+    if (type === 'admin') document.getElementById("adminLoginForm").classList.remove("hidden");
+    if (type === 'member') document.getElementById("memberLoginForm").classList.remove("hidden");
 }
 
-function toggleMenu(button) {
-  const menu = button.parentElement;
-  document.querySelectorAll('.action-menu').forEach(m => m.classList.remove('show'));
-  menu.classList.toggle('show');
+function adminLogin() {
+    let user = document.getElementById("adminUsername").value;
+    let pass = document.getElementById("adminPassword").value;
+    if (user === "admin" && pass === "1234") {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("adminPanel").classList.remove("hidden");
+        loadMembers();
+    } else {
+        alert("Invalid admin credentials");
+    }
+}
+
+function memberLogin() {
+    let id = document.getElementById("memberUsername").value;
+    let pass = document.getElementById("memberPassword").value;
+    let member = members.find(m => m.id == id && m.password == pass);
+    if (member) {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("memberPanel").classList.remove("hidden");
+        document.getElementById("memberNameDisplay").innerText = member.name;
+    } else {
+        alert("Invalid member login");
+    }
 }
 
 function addMember() {
-  const name = document.getElementById('memberName').value.trim();
-  const phone = document.getElementById('memberPhone').value.trim();
-  const password = document.getElementById('memberPassword').value.trim();
+    let name = document.getElementById("memberName").value;
+    let phone = document.getElementById("memberPhone").value;
+    let pass = document.getElementById("memberPass").value;
+    if (!name || !phone || !pass) return alert("Fill all fields");
 
-  if (!name || !phone || !password) {
-    alert('Please fill all fields!');
-    return;
-  }
-
-  if (!/^\d{10}$/.test(phone)) {
-    alert('Please enter a valid 10-digit phone number!');
-    return;
-  }
-
-  let members = JSON.parse(localStorage.getItem('members')) || [];
-  let memberID = "MEM" + String(members.length + 1).padStart(3, '0');
-
-  members.push({ id: memberID, name, phone, password });
-  localStorage.setItem('members', JSON.stringify(members));
-
-  alert(`Member "${name}" added!\nUser ID: ${memberID}\nPassword: ${password}\nPhone: ${phone}`);
-
-  displayMembers();
-
-  document.getElementById('memberName').value = '';
-  document.getElementById('memberPhone').value = '';
-  document.getElementById('memberPassword').value = '';
+    let id = Date.now();
+    members.push({ name, phone, password: pass, id });
+    localStorage.setItem("members", JSON.stringify(members));
+    loadMembers();
 }
 
-function deleteMember(index) {
-  let members = JSON.parse(localStorage.getItem('members')) || [];
-  if (confirm(`Are you sure you want to delete ${members[index].name}?`)) {
-    members.splice(index, 1);
-    localStorage.setItem('members', JSON.stringify(members));
-    displayMembers();
-  }
+function loadMembers() {
+    let table = document.getElementById("memberTable");
+    table.innerHTML = "";
+    members.forEach(m => {
+        table.innerHTML += `
+            <tr>
+                <td>${m.name}</td>
+                <td>${m.id}</td>
+                <td>${m.password}</td>
+                <td>${m.phone}</td>
+                <td>
+                    <span class="action-btn" onclick="editMember(${m.id})">✏️</span>
+                    <span class="action-btn" onclick="deleteMember(${m.id})">🗑️</span>
+                </td>
+            </tr>
+        `;
+    });
 }
 
-function editMember(index) {
-  let members = JSON.parse(localStorage.getItem('members')) || [];
-  let m = members[index];
-
-  const newName = prompt("Edit Name:", m.name);
-  const newPhone = prompt("Edit Phone:", m.phone);
-  const newPassword = prompt("Edit Password:", m.password);
-
-  if (newName && newPhone && /^\d{10}$/.test(newPhone) && newPassword) {
-    members[index] = { ...m, name: newName, phone: newPhone, password: newPassword };
-    localStorage.setItem('members', JSON.stringify(members));
-    displayMembers();
-  } else {
-    alert("Invalid details. Edit cancelled.");
-  }
+function deleteMember(id) {
+    members = members.filter(m => m.id != id);
+    localStorage.setItem("members", JSON.stringify(members));
+    loadMembers();
 }
 
-document.addEventListener('click', (event) => {
-  if (!event.target.closest('.action-menu')) {
-    document.querySelectorAll('.action-menu').forEach(m => m.classList.remove('show'));
-  }
-});
-
-window.onload = displayMembers;
+function editMember(id) {
+    let member = members.find(m => m.id == id);
+    let newName = prompt("Edit Name:", member.name);
+    let newPhone = prompt("Edit Phone:", member.phone);
+    let newPass = prompt("Edit Password:", member.password);
+    member.name = newName;
+    member.phone = newPhone;
+    member.password = newPass;
+    localStorage.setItem("members", JSON.stringify(members));
+    loadMembers();
+}
