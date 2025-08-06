@@ -63,3 +63,12 @@ let loggedMember = JSON.parse(localStorage.getItem("loggedMember"));
 if (loggedMember && document.getElementById("memberNameDisplay")) {
     document.getElementById("memberNameDisplay").innerText = loggedMember.name;
 }
+function deleteMember(index) {
+    if (confirm("Are you sure you want to delete this member?")) {
+        members.splice(index, 1);
+        localStorage.setItem("members", JSON.stringify(members));
+        renderTable();
+    }
+}
+
+
