@@ -20,11 +20,10 @@ function displayMembers() {
     row.insertCell(2).innerText = m.phone || "—";
     row.insertCell(3).innerText = m.password || "—";
 
-    // Actions cell with 3 dots menu
     const actionCell = row.insertCell(4);
     actionCell.innerHTML = `
       <div class="action-menu" style="position: relative; display: inline-block;">
-        <button onclick="toggleMenu(this)" style="background:none;border:none;font-size:18px;cursor:pointer;">⋮</button>
+        <button onclick="toggleMenu(this)" style="background:none;border:none;font-size:20px;cursor:pointer;">⋮</button>
         <div class="action-dropdown" style="display:none;position:absolute;right:0;background:white;border:1px solid #ccc;box-shadow:0px 4px 6px rgba(0,0,0,0.2);z-index:10;">
           <button onclick="editMember(${index})" style="background:none;border:none;width:100%;padding:8px;text-align:left;cursor:pointer;">Edit</button>
           <button onclick="deleteMember(${index})" style="background:none;border:none;width:100%;padding:8px;text-align:left;cursor:pointer;">Delete</button>
@@ -35,11 +34,8 @@ function displayMembers() {
 }
 
 function toggleMenu(button) {
-  const menu = button.parentElement;
-  document.querySelectorAll('.action-menu').forEach(m => m.classList.remove('show'));
   document.querySelectorAll('.action-dropdown').forEach(dd => dd.style.display = 'none');
-
-  const dropdown = menu.querySelector('.action-dropdown');
+  const dropdown = button.nextElementSibling;
   dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
@@ -99,11 +95,14 @@ function editMember(index) {
   }
 }
 
-// Click outside → close menu
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.action-menu')) {
     document.querySelectorAll('.action-dropdown').forEach(dd => dd.style.display = 'none');
   }
 });
+
+function logout() {
+  window.location.href = "index.html";
+}
 
 window.onload = displayMembers;
