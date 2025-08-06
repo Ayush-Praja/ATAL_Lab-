@@ -1,46 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>ATAL Lab - APS2 Jabalpur</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATAL Lab - APS2 Jabalpur</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo">
-  <h1>ATAL Tinkering Lab - APS2 Jabalpur</h1>
-  <button class="login-btn" onclick="showLoginOptions()">Login</button>
-</header>
 
-<main>
-  <section class="info">
-    <h2>Welcome to ATAL Tinkering Lab</h2>
-    <p>ATAL Tinkering Lab is a dedicated innovation workspace for young minds to develop creativity, problem-solving, and technological skills.</p>
-    <p>Here, students can work on robotics, IoT, electronics, 3D printing, AI, and many other advanced technologies.</p>
-  </section>
-</main>
+    <!-- Logo -->
+    <header>
+        <img src="APS2 logo.jpg" alt="APS2 Logo" class="logo">
+        <button id="loginBtn">Login</button>
+    </header>
 
-<!-- Login Options -->
-<div id="loginOptions" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLoginOptions()">&times;</span>
-    <h2>Select Login Type</h2>
-    <button onclick="showLogin('admin')">Admin Login</button>
-    <button onclick="showLogin('member')">Member Login</button>
-  </div>
-</div>
+    <!-- Info Section -->
+    <section class="info">
+        <h1>ATAL Tinkering Lab - APS2 Jabalpur</h1>
+        <p>
+            Welcome to the ATAL Tinkering Lab at APS2 Jabalpur! Our lab encourages innovation,
+            creativity, and problem-solving skills among students by providing them with tools and
+            technologies to experiment and bring ideas to life.
+        </p>
+        <img src="lab.jpg" alt="ATAL Lab" class="lab-img">
+    </section>
 
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeLogin()">&times;</span>
-    <h2 id="loginTitle"></h2>
-    <input type="text" id="username" placeholder="User ID">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select Login Type</h2>
+            <button onclick="showLoginForm('admin')">Admin Login</button>
+            <button onclick="showLoginForm('member')">Member Login</button>
 
-<script src="script.js"></script>
+            <!-- Admin Login Form -->
+            <div id="adminLoginForm" class="login-form hidden">
+                <h3>Admin Login</h3>
+                <input type="text" id="adminUsername" placeholder="Username">
+                <input type="password" id="adminPassword" placeholder="Password">
+                <button onclick="adminLogin()">Login</button>
+            </div>
+
+            <!-- Member Login Form -->
+            <div id="memberLoginForm" class="login-form hidden">
+                <h3>Member Login</h3>
+                <input type="text" id="memberUsername" placeholder="Member ID">
+                <input type="password" id="memberPassword" placeholder="Password">
+                <button onclick="memberLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="hidden">
+        <h2>Admin Dashboard</h2>
+        <div class="form-container">
+            <input type="text" id="memberName" placeholder="Member Name">
+            <input type="text" id="memberPhone" placeholder="Phone Number">
+            <input type="password" id="memberPass" placeholder="Password">
+            <button onclick="addMember()">Add Member</button>
+        </div>
+        <h3>Members List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Password</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="memberTable"></tbody>
+        </table>
+    </div>
+
+    <!-- Member Panel -->
+    <div id="memberPanel" class="hidden">
+        <h2>Welcome, <span id="memberNameDisplay"></span></h2>
+        <p>You are logged in as a member of ATAL Lab.</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
