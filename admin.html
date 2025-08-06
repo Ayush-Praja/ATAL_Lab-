@@ -6,30 +6,30 @@
   <title>ATAL Lab - Admin Panel</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body style="background: url('atal_lab_bg.jpg') no-repeat center center fixed; background-size: cover; font-family: Arial, sans-serif;">
+<body class="admin-bg">
 
-  <header style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.6); padding: 10px;">
-    <img src="APS2 logo.jpg" alt="APS2 Logo" style="height:50px;">
-    <h2 style="color: white;">ATAL LAB ADMIN PANEL</h2>
-    <button onclick="logout()" style="padding: 8px 15px; border: none; background: red; color: white; cursor: pointer; border-radius: 5px;">Logout</button>
+  <header class="admin-header">
+    <img src="APS2 logo.jpg" alt="APS2 Logo" class="logo">
+    <h2>ATAL LAB ADMIN PANEL</h2>
+    <button onclick="logout()" class="logout-btn">Logout</button>
   </header>
 
-  <main style="padding: 20px; color: white;">
-    <section style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; max-width: 700px; margin: auto;">
+  <main>
+    <section class="form-box">
       <h3>Add New Member</h3>
-      <input type="text" id="memberName" placeholder="Enter Member Name" style="width: 100%; padding: 8px; margin-bottom: 10px;">
-      <input type="text" id="memberPhone" placeholder="Enter Phone Number" style="width: 100%; padding: 8px; margin-bottom: 10px;">
-      <input type="text" id="memberPassword" placeholder="Enter Password" style="width: 100%; padding: 8px; margin-bottom: 10px;">
-      <button onclick="addMember()" style="width: 100%; padding: 10px; background: green; color: white; border: none; cursor: pointer; border-radius: 5px;">Add Member</button>
+      <input type="text" id="memberName" placeholder="Member Name">
+      <input type="text" id="memberPhone" placeholder="Phone Number">
+      <input type="text" id="memberPassword" placeholder="Password">
+      <button onclick="addMember()">Add Member</button>
     </section>
 
-    <section style="margin-top: 30px; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
+    <section class="table-box">
       <h3>Member List</h3>
-      <table id="membersTable" border="1" style="width: 100%; background: white; color: black; border-collapse: collapse;">
+      <table id="membersTable">
         <tr>
-          <th>Member Name</th>
+          <th>Name</th>
           <th>Member ID</th>
-          <th>Phone Number</th>
+          <th>Phone</th>
           <th>Password</th>
           <th>Actions</th>
         </tr>
