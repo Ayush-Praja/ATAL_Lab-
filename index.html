@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATAL Lab - APS2 Jabalpur</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <img src="APS2_logo.jpg" alt="APS2 Logo" class="logo"/>
+    <div class="dropdown">
+      <button class="dropbtn">Login ▾</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="showLogin('admin')">Admin Login</a>
+        <a href="#" onclick="showLogin('member')">Member Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="info">
+      <h1>Welcome to ATAL Tinkering Lab - APS2 Jabalpur</h1>
+      <p>
+        The ATAL Tinkering Lab at Army Public School No. 2, Jabalpur is a 
+        state-of-the-art facility that encourages innovation, creativity, 
+        and hands-on learning. Students get access to tools and equipment 
+        to explore STEM concepts, work on projects, and develop real-world 
+        problem-solving skills.
+      </p>
+      <p>
+        Our mission is to foster curiosity, creativity, and imagination in 
+        young minds and to inculcate skills such as design mindset, 
+        computational thinking, adaptive learning, and physical computing.
+      </p>
+    </section>
+  </main>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2 id="loginTitle">Login</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
