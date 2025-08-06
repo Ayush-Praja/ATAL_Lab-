@@ -59,14 +59,11 @@ function addMember() {
   let members = JSON.parse(localStorage.getItem('members')) || [];
   let memberID = "MEM" + String(members.length + 1).padStart(3, '0');
 
-  while (members.some(m => m.id === memberID)) {
-    memberID = "MEM" + String(members.length + 1 + Math.floor(Math.random() * 100)).padStart(3, '0');
-  }
-
   members.push({ id: memberID, name, password, phone });
   localStorage.setItem('members', JSON.stringify(members));
 
   alert(`Member "${name}" added!\nUser ID: ${memberID}\nPassword: ${password}\nPhone: ${phone}`);
+
   displayMembers();
 
   document.getElementById('memberName').value = '';
@@ -74,21 +71,12 @@ function addMember() {
   document.getElementById('memberPhone').value = '';
 }
 
-  members.push({ id: memberID, name, password });
-  localStorage.setItem('members', JSON.stringify(members));
-
-  alert(`Member "${name}" added!\nUser ID: ${memberID}\nPassword: ${password}`);
-  displayMembers();
-
-  document.getElementById('memberName').value = '';
-  document.getElementById('memberPassword').value = '';
-}
-
 function displayMembers() {
   const members = JSON.parse(localStorage.getItem('members')) || [];
   const table = document.getElementById('membersTable');
   if (!table) return;
 
+  // Reset table header
   table.innerHTML = `
     <tr>
       <th>Member Name</th>
@@ -98,6 +86,7 @@ function displayMembers() {
     </tr>
   `;
 
+  // Add each member as a row
   members.forEach(m => {
     const row = table.insertRow();
     row.insertCell(0).innerText = m.name;
@@ -106,3 +95,6 @@ function displayMembers() {
     row.insertCell(3).innerText = m.password;
   });
 }
+
+// Call displayMembers() on page load
+window.onload = displayMembers;
